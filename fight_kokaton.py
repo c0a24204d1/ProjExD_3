@@ -166,10 +166,11 @@ def main():
                 time.sleep(1)
                 return
 
-
+        #beamとbombが当たった時
         if bomb is not None:
             if beam is not None:
                 if beam.rct.colliderect(bomb.rct):
+                    bird.change_img(6, screen)
                     beam = None
                     bomb = None
         
