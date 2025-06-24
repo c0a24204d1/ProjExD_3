@@ -23,28 +23,7 @@ def check_bound(obj_rct: pg.Rect) -> tuple[bool, bool]:
     if obj_rct.top < 0 or HEIGHT < obj_rct.bottom:
         tate = False
     return yoko, tate
-class Score:
-    """
-    Scoreに関するクラス
-    """
-    
-    def __init__(self):
-        """
-        Scoreクラスのイニシャライザ
-        """
-        self.fonto = pg.font.SysFont("hgp創英角ホップ体", 30)
-        self.score = 0
-        self.img = self.fonto.render(f"score:{self.score}", 0, (0, 0, 255))
-        self.rct = self.img.get_rect()
-        self.rct.center = 100, HEIGHT-50    
 
-    def update(self, screen: pg.Surface):
-        """
-        スコアを表示させる
-        引数 screen：画面Surface
-        """
-        self.img = self.fonto.render(f"score:{self.score}", 0, (0, 0, 255))
-        screen.blit(self.img, self.rct)
 
 class Bird:
     """
@@ -173,11 +152,7 @@ def main():
     beams = []
     clock = pg.time.Clock()
     tmr = 0
-<<<<<<< HEAD
     
-=======
-    score = Score()
->>>>>>> score
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -209,7 +184,6 @@ def main():
                 if beam.rct.colliderect(bomb.rct):
                     beams[j] = None
                     bombs[i] = None
-                    score.score += 1      
                     bird.change_img(6, screen)
             beams = [beam for beam in beams if beam is not None]
 
@@ -222,8 +196,6 @@ def main():
                 beams[j] = None
         beams = [beam for beam in beams if beam is not None]
 
-        print(len(beams))
-
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
         for beam in beams: #ビームが存在する時だけ
@@ -232,15 +204,10 @@ def main():
         #if bomb is not None:  
         for bomb in bombs: 
             bomb.update(screen)
-<<<<<<< HEAD
 
-=======
-        score.update(screen)
->>>>>>> score
         pg.display.update()
         tmr += 1
         clock.tick(50)
-
 
 if __name__ == "__main__":
     pg.init()
